@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "hono": "^4.6.20",
+    "tailwind": "^4.0.0"
+  }
+}
