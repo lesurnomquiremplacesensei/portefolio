@@ -3,8 +3,462 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Inter', sans-serif;
+  body {
+    @apply bg-site text-primary;
   }
 }
-    
+
+@layer components {
+  .card {
+    @apply bg-card rounded-lg shadow-md p-6;
+  }
+  
+  .btn {
+    @apply px-4 py-2 rounded-md transition-colors;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-500 text-white hover:bg-primary-600;
+  }
+  
+  .btn-accent {
+    @apply bg-accent-400 text-white hover:bg-accent-500;
+  }
+  
+  /* Styles pour le header et la navigation */
+  .nav-link {
+    @apply relative overflow-hidden;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Animation pour le menu mobile */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .mobile-menu-open {
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+  
+  /* Animations pour la page À propos */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .animate-on-scroll.animate-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Nouvelles animations 3D pour la timeline */
+  .timeline-item {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .timeline-item.animate-fade-in {
+    opacity: 1;
+  }
+  
+  .timeline-item.animate-flip-in {
+    animation: flipInTimeline 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  .timeline-item.animate-rotate-in {
+    animation: rotateInTimeline 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes flipInTimeline {
+    0% {
+      transform: perspective(1000px) rotateX(90deg);
+      opacity: 0;
+    }
+    40% {
+      transform: perspective(1000px) rotateX(-10deg);
+    }
+    70% {
+      transform: perspective(1000px) rotateX(10deg);
+    }
+    100% {
+      transform: perspective(1000px) rotateX(0deg);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes rotateInTimeline {
+    0% {
+      transform: perspective(1000px) rotateY(-90deg) translateZ(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: perspective(1000px) rotateY(0) translateZ(0);
+      opacity: 1;
+    }
+  }
+  
+  .timeline-item-card {
+    transform: rotateY(-15deg) translateZ(-10px);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(29, 78, 216, 0);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+  
+  .timeline-item.animate-fade-in .timeline-item-card {
+    transform: rotateY(0) translateZ(0);
+    opacity: 1;
+    box-shadow: 0 10px 25px rgba(29, 78, 216, 0.2);
+  }
+  
+  /* Animation au survol des cartes de parcours professionnel */
+  .timeline-item-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(29, 78, 216, 0.4);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .timeline-item-card:hover .text-primary-500 {
+    animation: pulseIcon 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulseIcon {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+  
+  .timeline-item-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(29, 78, 216, 0.1) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 0.5rem;
+    z-index: 0;
+    background-size: 200% 200%;
+  }
+  
+  .timeline-item-card:hover::before {
+    opacity: 1;
+    animation: gradientMove 2s linear infinite;
+  }
+  
+  /* Effet de particules au survol */
+  .timeline-item-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.2) 0%, transparent 8px),
+      radial-gradient(circle at 40% 70%, rgba(59, 130, 246, 0.2) 0%, transparent 6px),
+      radial-gradient(circle at 60% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 10px),
+      radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 8px),
+      radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.2) 0%, transparent 6px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+    border-radius: 0.5rem;
+  }
+  
+  .timeline-item-card:hover::after {
+    opacity: 1;
+    animation: particlesFade 3s ease-in-out infinite;
+  }
+  
+  @keyframes particlesFade {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  
+  /* Animation du titre au survol */
+  .timeline-item-card:hover h3 {
+    background: linear-gradient(90deg, #1d4ed8, #60a5fa, #1d4ed8);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: textGradient 3s linear infinite;
+    transition: all 0.3s ease;
+  }
+  
+  @keyframes textGradient {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  
+  .timeline-item-number {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .timeline-item.animate-fade-in .timeline-item-number {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+  
+  .timeline-line {
+    position: relative;
+  }
+  
+  .timeline-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, theme('colors.primary.500') 10%, theme('colors.primary.500') 90%, transparent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.5s ease-out;
+  }
+  
+  .timeline-line.animate-fade-in::before {
+    transform: scaleY(1);
+  }
+  
+  /* Animations pour les barres de progression */
+  .progress-bar {
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 2.5s infinite;
+    z-index: 1;
+  }
+  
+  .progress-bar-fill {
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+  }
+  
+  .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+      rgba(255, 255, 255, 0) 0%, 
+      rgba(255, 255, 255, 0.4) 50%, 
+      rgba(255, 255, 255, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .progress-bar-fill.animate {
+    transform: scaleX(1);
+  }
+  
+  .progress-bar-fill.animate::after {
+    animation: progressGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes progressGlow {
+    0%, 100% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Animation pour les compétences */
+  .skill-card {
+    transition: all 0.4s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .skill-card.animate-fade-in {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .skill-card.animate-scale-up {
+    animation: scaleUpCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  
+  @keyframes scaleUpCard {
+    0% {
+      transform: scale(0.7) translateY(20px);
+      opacity: 0;
+    }
+    70% {
+      transform: scale(1.05) translateY(-5px);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 130, 246, 0.3);
+    z-index: 10;
+  }
+  
+  /* Animation pour la photo de profil */
+  .profile-image-container {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .profile-image-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      transparent 30%,
+      rgba(59, 130, 246, 0.3),
+      transparent 70%
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+    z-index: 1;
+  }
+  
+  .profile-image-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .profile-image-container:hover::after {
+    opacity: 1;
+  }
+  
+  .profile-image-container.animate-float {
+    animation: floatProfile 6s ease-in-out infinite;
+  }
+  
+  @keyframes floatProfile {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.02);
+    }
+  }
+  
+  @keyframes shine {
+    0% {
+      transform: rotate(45deg) translateY(-100%);
+    }
+    100% {
+      transform: rotate(45deg) translateY(100%);
+    }
+  }
+  
+  /* Animations pour les boutons */
+  .btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: -1;
+  }
+  
+  .btn:hover::before {
+    transform: translateX(100%);
+  }
+}
