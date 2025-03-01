@@ -49,32 +49,32 @@ const ListeProject = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 bg-site">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12 relative">
+        <h1 className="text-4xl font-bold text-center mb-12 relative text-primary">
           Nos Projets
-          <span className="block w-24 h-1 bg-blue-500 mx-auto mt-2"></span>
+          <span className="block w-24 h-1 bg-primary-500 mx-auto mt-2"></span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projets.map((projet) => (
-            <div key={projet.id} className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div key={projet.id} className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card">
+              <div className="absolute inset-0 bg-dark-900 bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <img 
                 src={projet.image} 
                 alt={projet.titre}
                 className="w-full h-64 object-cover"
               />
               <div className="absolute inset-0 flex flex-col justify-center items-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h2 className="text-2xl font-bold text-white mb-2">
+                <h2 className="text-2xl font-bold text-primary mb-2">
                   {projet.titre}
                 </h2>
-                <p className="text-white text-center mb-4">
+                <p className="text-secondary text-center mb-4">
                   {projet.description}
                 </p>
                 <Link 
                   to={projet.lien}
-                  className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors duration-300"
+                  className="px-6 py-2 bg-primary-500 text-white rounded-full hover:bg-primary-600 transition-colors duration-300"
                 >
                   Découvrir le projet
                 </Link>
