@@ -354,7 +354,7 @@ const ContactPage = () => {
           <h2 className="text-2xl font-bold mb-4">Autres moyens de me contacter</h2>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <a 
-              href="https://github.com" 
+              href="https://github.com/abdoul-hachim" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-12 h-12 rounded-full bg-card shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
@@ -364,7 +364,7 @@ const ContactPage = () => {
               </svg>
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/feed/?trk=sem-ga_campid.21228777300_asid.161774284317_crid.698137525090_kw.linkedin_d.c_tid.kwd-148086543_n.g_mt.e_geo.9194148" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-12 h-12 rounded-full bg-card shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"

@@ -82,7 +82,7 @@ const Footer = () => {
             </p>
             <div ref={socialIconsRef} className="flex space-x-4 mt-2">
               <a 
-                href="https://github.com" 
+                href="https://github.com/abdoul-hachim" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary-500 transition-all duration-300 hover:-translate-y-1 transform opacity-0"
@@ -91,7 +91,7 @@ const Footer = () => {
                 <FaGithub size={20} />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/feed/?trk=sem-ga_campid.21228777300_asid.161774284317_crid.698137525090_kw.linkedin_d.c_tid.kwd-148086543_n.g_mt.e_geo.9194148" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary-500 transition-all duration-300 hover:-translate-y-1 transform opacity-0"
